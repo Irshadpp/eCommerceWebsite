@@ -1,0 +1,33 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.carousel1{
+  margin-top: -40px;
+  margin: 50px;
+}
+.btn{
+ margin-left: 15px;
+}
+
+ .w-100{
+  width:200px;
+  height: 500px;
+  
+ }
+
+a {
+  color: #00B7FF;
+}
+.allcard{
+  /* margin-top: -100px; */
+  margin: auto;
+  /* margin-left: 100px; */
+}
+.card{
+  float: left;
+  margin-left: 20px;
+}
+.card-img-top{
+  width: 200px;
+  height: 200px;
+}

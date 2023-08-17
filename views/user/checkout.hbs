@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity=
+        "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous">
+    </script>
+     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="ids">{{order.id}}</h2>
+    <h2 id="amount">{{order.amount}}</h2>
+    <button id="rzp-button1">Pay</button>
+   
+    <script>
+        let id = document.getElementById('ids').innerHTML;
+        let amt = parseInt(document.getElementById('amount').innerHTML);
+        
+    var options = {
+    "key": "rzp_test_DdckPG3WDkebU6", // Enter the Key ID generated from the Dashboard
+    "amount": amt, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+
+        verifypay(response,amt,id);
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+function verifypay(response,amt,id){
+    $.post('/verify',
+           data ={
+               response,
+               amt,
+               id
+           },function(data,status){
+            console.log(data)
+           })
+}
+</script>
+
+    
+</body>
+</html>

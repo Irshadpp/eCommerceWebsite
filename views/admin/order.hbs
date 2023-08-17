@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Assistant');
+
+  body {
+    background: #eee;
+    font-family: Assistant, sans-serif;
+  }
+
+  .cell-1 {
+    border-collapse: separate;
+    border-spacing: 0 4em;
+    background: #fff;
+    border-bottom: 5px solid transparent;
+    /*background-color: gold;*/
+    background-clip: padding-box;
+  }
+
+  thead {
+    background: #dddcdc;
+  }
+
+  .toggle-btn {
+    width: 40px;
+    height: 21px;
+    background: grey;
+    border-radius: 50px;
+    padding: 3px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s 0.1s ease-in-out;
+    -moz-transition: all 0.3s 0.1s ease-in-out;
+    -o-transition: all 0.3s 0.1s ease-in-out;
+    transition: all 0.3s 0.1s ease-in-out;
+  }
+
+  .toggle-btn>.inner-circle {
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-transition: all 0.3s 0.1s ease-in-out;
+    -moz-transition: all 0.3s 0.1s ease-in-out;
+    -o-transition: all 0.3s 0.1s ease-in-out;
+    transition: all 0.3s 0.1s ease-in-out;
+  }
+
+  .toggle-btn.active {
+    background: blue !important;
+  }
+
+  .toggle-btn.active>.inner-circle {
+    margin-left: 19px;
+  }
+</style>
+
+<body>
+
+  <div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+      <div class="col-md-10">
+        <div class="rounded">
+          <div class="table-responsive table-borderless">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    <div class="toggle-btn">
+                      <div class="inner-circle"></div>
+                    </div>
+                  </th>
+                  <th>User id</th>
+                  <th>Order id</th>
+                  <th>Product name</th>
+                  <th>status</th>
+                  <th>Total</th>
+                  <th>Quantity</th>
+                  <th>Image</th>
+                  <th></th>
+                </tr>
+              </thead>
+               {{#each row}}
+
+              <tbody class="table-body">
+                <tr class="cell-1">
+
+                  <td class="text-center">
+
+                    <div class="toggle-btn">
+
+                      <div class="inner-circle"></div>
+                    </div>
+
+                  </td>
+                  <td> <a href="/users/userdetails">{{this.User_id}}</a></td>
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                  <td>{{this.status}}</td>
+                  <td>{{this.total}}</td>
+                  <td>{{this.quantity}}</td>
+                  <td> <img src="/images/products/{{this.img}}" class="img-fluid rounded-3" alt="Shopping item"
+                              style="width: 50px;"></td>
+                  <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                </tr>
+                {{/each}}
+
+
+
+                {{!-- <tr class="cell-1">
+                  <td class="text-center">
+                    <div class="toggle-btn">
+                      <div class="inner-circle"></div>
+                    </div>
+                  </td>
+                  <td>#SO-13453</td>
+                  <td>Aartsen van</td>
+                  <td><span class="badge badge-info">Confirmed</span></td>
+                  <td>$3454.00</td>
+                  <td>Yesterday</td>
+                  <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                </tr>
+                <tr class="cell-1">
+                  <td class="text-center">
+                    <div class="toggle-btn">
+                      <div class="inner-circle"></div>
+                    </div>
+                  </td>
+                  <td>#SO-13498</td>
+                  <td>Trashes Habard</td>
+                  <td><span class="badge badge-danger">Partially shipped</span></td>
+                  <td>$6274.00</td>
+                  <td>May 12,2020</td>
+                  <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                </tr>
+                <tr class="cell-1">
+                  <td class="text-center">
+                    <div class="toggle-btn">
+                      <div class="inner-circle"></div>
+                    </div>
+                  </td>
+                  <td>#SO-16499</td>
+                  <td>Samban Hubart</td>
+                  <td><span class="badge badge-success">Fullfilled</span></td>
+                  <td>$6375.00</td>
+                  <td>May 11,2020</td>
+                  <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                </tr> --}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
